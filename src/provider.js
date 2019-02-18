@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import {WhisperSyncSocket} from './socket';
 
-export const WhisperSyncSocketContext = React.createContext();
+export const WhisperSyncSocketContext = React.createContext(undefined);
 
 export function SyncMachineSocketProvider(props) {
-    let [apiKey, setApiKey] = useState(null);
-    let [connection, setConnection] = useState(null);
+    let [apiKey, setApiKey] = React.useState(null);
+    let [connection, setConnection] = React.useState(null);
 
     if (props.apiKey !== apiKey) {
         if (connection) {
@@ -19,9 +19,11 @@ export function SyncMachineSocketProvider(props) {
         setApiKey(props.apiKey);
     }
 
-    return <WhisperSyncSocketContext.Provider value={connection}>
-        { props.children }
-    </WhisperSyncSocketContext.Provider>;
+    return React.createElement(
+        WhisperSyncSocketContext.Provider,
+        { value: connection },
+        props.children
+    );
 }
 
-export const useSyncMachineSocket = () => useContext(WhisperSyncSocketContext);
+export const useSyncMachineSocket = () => React.useContext(WhisperSyncSocketContext);
