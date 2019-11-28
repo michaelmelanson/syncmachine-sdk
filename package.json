@@ -9,7 +9,7 @@
   "author": "Michael Melanson <michael@michaelmelanson.net>",
   "license": "MIT",
   "dependencies": {
-    "actioncable": "^5.2.2"
+    "actioncable": "^5.2.4"
   },
   "devDependencies": {
     "microbundle": "^0.9.0"
